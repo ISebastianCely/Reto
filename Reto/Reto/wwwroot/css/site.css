@@ -1,0 +1,41 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.main-container {
+    margin-left:-120px;
+    margin-top: 0;
+    width: 96rem;
+    height: 37.7rem;
+    margin-top: -20px;
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/scotland-unsplash.jpg);
+}
+
+.container {
+    margin: auto;
+}
+.index-intro { 
+    width: 100%;
+}
+
+.olive {
+    background-color:#808000 ;
+}
+
+.index-intro .jumbotron {
+    padding: 245px 100px;
+    
+    background-size: cover;
+    background-repeat: no-repeat;
+}

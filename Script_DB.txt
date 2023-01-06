@@ -1,0 +1,115 @@
+CREATE DATABASE Reto;
+USE Reto;
+----------------------------------------------------------
+-- Crear tabla Departamento.
+----------------------------------------------------------
+
+CREATE TABLE Departamento(
+Departamento_ID INT IDENTITY(0,1) PRIMARY KEY NOT NULL,
+Nombre VARCHAR(25) NOT NULL,
+);
+
+----------------------------------------------------------
+-- Insertar valores de departamentos.
+----------------------------------------------------------
+
+INSERT INTO Departamento (Nombre)
+VALUES ('Antioquia'),('Boyacá'),('Cundinamarca');
+
+----------------------------------------------------------
+-- Crear tabla Ciudad con llave foranea a tabla departamento.
+----------------------------------------------------------
+
+CREATE TABLE Ciudad(
+Ciudad_ID INT IDENTITY(0,1) PRIMARY KEY NOT NULL,
+Nombre VARCHAR(20) NOT NULL,
+Departamento_ID INT NOT NULL,
+CONSTRAINT fk_Departamento FOREIGN KEY (Departamento_ID) REFERENCES Departamento (Departamento_ID),
+);
+
+----------------------------------------------------------
+-- Insertar valores de ciudades principales.
+----------------------------------------------------------
+
+INSERT INTO Ciudad (Nombre, Departamento_ID)
+VALUES ('Apartadó', 0),
+			('Bello', 0),
+			('Caldas', 0),
+			('Caucasia', 0),
+			('Chigorodó', 0),
+			('Envigado', 0),
+			('Itagüí', 0),
+			('Medellín', 0),
+			('Rionegro', 0),
+			('Turbo', 0),
+			('Chiquinquirá', 1),
+			('Garagoa', 1),
+			('Duitama', 1),
+			('Moniquirá', 1),
+			('Paipa', 1),
+			('Puerto Boyacá', 1),
+			('Samacá', 1),
+			('Sogamoso', 1),
+			('Tunja', 1),
+			('Villa de Leyva', 1),
+			('Bogotá', 2),
+			('Chía', 2),
+			('Facatativá', 2),
+			('Funza', 2),
+			('Fusagasugá', 2),
+			('Girardot', 2),
+			('Madrid', 2),
+			('Mosquera', 2),
+			('Soacha', 2),
+			('Zipaquirá', 2);
+			
+----------------------------------------------------------
+-- Crear tabla cliente (En este caso, el identificador es la cedula del cliente).
+----------------------------------------------------------
+
+CREATE TABLE Cliente(
+Cliente_ID INT PRIMARY KEY NOT NULL,
+Nombre VARCHAR(20) NOT NULL,
+Teléfono INT NOT NULL,
+Correo VARCHAR(50) NOT NULL,
+Edad INT NOT NULL,
+Departamento_ID INT NOT NULL,
+Ciudad_ID INT NOT NULL,
+CONSTRAINT fk_Departamentoo FOREIGN KEY (Departamento_ID) REFERENCES Departamento (Departamento_ID),
+CONSTRAINT fk_Ciudad FOREIGN KEY (Ciudad_ID) REFERENCES Ciudad (Ciudad_ID)
+);
+
+----------------------------------------------------------
+-- Crear tabla motivo, con los motivos especificados.
+----------------------------------------------------------
+
+CREATE TABLE Motivo (
+Motivo_ID INT IDENTITY(0,1) PRIMARY KEY NOT NULL,
+Tipo TEXT NOT NULL
+);
+
+----------------------------------------------------------
+-- Insertar motivos especificados.
+----------------------------------------------------------
+
+INSERT INTO Motivo (Tipo)
+VALUES ('Evento empresarial'),
+		('Despedida empresa'),
+		('Desayuno comercial'),
+		('Almuerzo');
+
+----------------------------------------------------------
+-- Creaar tabla Reserva.
+----------------------------------------------------------
+
+CREATE TABLE Reserva(
+Reserva_ID INT IDENTITY(0,1) PRIMARY KEY  NOT NULL,
+Cliente_ID INT NOT NULL,
+Fecha DATE NOT NULL,
+Cantidad INT NOT NULL,
+Motivo_ID INT NOT NULL,
+Observaciones TEXT,
+Estado BIT, 
+CONSTRAINT fk_Cliente FOREIGN KEY (Cliente_ID) REFERENCES Cliente (Cliente_ID),
+CONSTRAINT fk_Motivo FOREIGN KEY (Motivo_ID) REFERENCES Motivo (Motivo_ID),
+);

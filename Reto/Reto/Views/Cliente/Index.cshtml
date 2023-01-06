@@ -1,0 +1,80 @@
+﻿@model List<Cliente>
+<h1>Clientes</h1>
+<p>
+	<a class="btn btn-success" asp-action="Create">Registrar</a>
+</p>
+<form asp-controller="Cliente" asp-action="Index">
+	<p>
+		Buscar identificación: <input type="text" name="buscar" class="form-text" </input>
+		<input type="submit" value="Buscar" class="btn btn-sm btn-dark"></input>
+	</p>
+</form>
+<div class="container container-fluid card">
+	<div class="row card-body">
+		<div class="col">
+			<table class='table table-striped table-hover table-fluid'>
+				<thead>
+					<tr>
+						<th>
+							Identificación
+						</th>
+						<th>
+							Nombre
+						</th>
+						<th>
+							Teléfono
+						</th>
+						<th>
+							Correo
+						</th>
+						<th>
+							Edad
+						</th>
+						<th>
+							Departamento
+						</th>
+						<th>
+							Ciudad
+						</th>
+						<th class="col-md-2">
+							Opciones
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var cli in Model)
+					{
+							<tr>
+								<td>
+									@Html.DisplayFor(c => cli.ClienteId)
+								</td>
+								<td>
+									@Html.DisplayFor(c => cli.Nombre)
+								</td>
+								<td>
+									@Html.DisplayFor(c => cli.Teléfono)
+								</td>
+								<td>
+									@Html.DisplayFor(c => cli.Correo)
+								</td>
+								<td>
+									@Html.DisplayFor(c => cli.Edad)
+								</td>
+								<td>
+									@Html.DisplayFor(c => cli.Departamento.Nombre)
+								</td>
+								<td>
+									@Html.DisplayFor(c => cli.Ciudad.Nombre)
+								</td>
+								<td>
+									<a class="btn btn-warning" asp-action="Edit" asp-route-id="@cli.ClienteId">Editar</a> 
+									@*<a asp-action="Details" asp-route-id="@item.ClienteId">Details</a> |*@
+									<a class="btn btn-danger" asp-action="Delete" asp-route-id="@cli.ClienteId">Delete</a>
+								</td>
+							</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

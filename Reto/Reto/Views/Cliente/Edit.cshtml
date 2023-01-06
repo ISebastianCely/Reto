@@ -1,0 +1,61 @@
+﻿@model Reto.Models.Cliente
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Cliente</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ClienteId" />
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Teléfono" class="control-label"></label>
+                <input asp-for="Teléfono" class="form-control" />
+                <span asp-validation-for="Teléfono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Correo" class="control-label"></label>
+                <input asp-for="Correo" class="form-control" />
+                <span asp-validation-for="Correo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Edad" class="control-label"></label>
+                <input asp-for="Edad" class="form-control" />
+                <span asp-validation-for="Edad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartamentoId" class="control-label"></label>
+                <select asp-for="DepartamentoId" class="form-control" asp-items="ViewBag.Departamentos"></select>
+                <span asp-validation-for="DepartamentoId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CiudadId" class="control-label"></label>
+                <select asp-for="CiudadId" class="form-control" asp-items="ViewBag.Ciudades"></select>
+                <span asp-validation-for="CiudadId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
